@@ -569,84 +569,83 @@
     let currentLang = localStorage.getItem('ie_study_lang') || 'ar';
     let currentTheme = localStorage.getItem('ie_study_theme') || 'dark';
 
-    // توزيع المواد وإحداثياتها بدقة حسب السنوات الخمس من البوستر
+    // شبكة أعمدة متباعدة بدقة لمنع التداخل نهائياً (عرض كامل مريح 2000px)
     const nodes = [
-      // متطلبات الجامعة الإجبارية (العمود الأيمن)
-      { id: "intro_eng", name_ar: "مقدمة في\nالهندسة", name_en: "Intro to\nEngineering", cr: 1, x: 1360, y: 250, stroke: "#64748b" },
-      { id: "arabic", name_ar: "لغة\nعربية", name_en: "Arabic\nLanguage", cr: 3, x: 1220, y: 230, stroke: "#f43f5e" },
-      { id: "eng101", name_ar: "إنجليزي\n101", name_en: "English\n101", cr: 3, x: 1360, y: 350, stroke: "#f43f5e" },
-      { id: "leadership", name_ar: "القيادة\nوالمسؤولية\nالمجتمعية", name_en: "Leadership &\nResponsibility", cr: 2, x: 1220, y: 330, stroke: "#f43f5e" },
-      { id: "entrep", name_ar: "الريادة\nوالابتكار", name_en: "Entrepreneurship\n& Innovation", cr: 2, x: 1080, y: 260, stroke: "#f43f5e" },
-      { id: "life_skills", name_ar: "مهارات\nحياتية", name_en: "Life\nSkills", cr: 2, x: 1080, y: 360, stroke: "#f43f5e" },
-      { id: "mil_sci", name_ar: "علوم\nعسكرية", name_en: "Military\nSciences", cr: 3, x: 1220, y: 430, stroke: "#f43f5e" },
+      // متطلبات الجامعة الإجبارية (أقصى اليمين)
+      { id: "intro_eng", name_ar: "مقدمة في\nالهندسة", name_en: "Intro to\nEngineering", cr: 1, x: 1900, y: 220, stroke: "#64748b" },
+      { id: "arabic", name_ar: "لغة\nعربية", name_en: "Arabic\nLanguage", cr: 3, x: 1740, y: 220, stroke: "#f43f5e" },
+      { id: "eng101", name_ar: "إنجليزي\n101", name_en: "English\n101", cr: 3, x: 1900, y: 340, stroke: "#f43f5e" },
+      { id: "leadership", name_ar: "القيادة\nوالمسؤولية\nالمجتمعية", name_en: "Leadership &\nResponsibility", cr: 2, x: 1740, y: 340, stroke: "#f43f5e" },
+      { id: "entrep", name_ar: "الريادة\nوالابتكار", name_en: "Entrepreneurship\n& Innovation", cr: 2, x: 1580, y: 260, stroke: "#f43f5e" },
+      { id: "life_skills", name_ar: "مهارات\nحياتية", name_en: "Life\nSkills", cr: 2, x: 1580, y: 360, stroke: "#f43f5e" },
+      { id: "mil_sci", name_ar: "علوم\nعسكرية", name_en: "Military\nSciences", cr: 3, x: 1740, y: 440, stroke: "#f43f5e" },
 
-      // المستوى / السنة الأولى (y: 130 - 240)
-      { id: "chem_lab", name_ar: "مختبر\nكيمياء عامة", name_en: "General Chem\nLab", cr: 1, x: 140, y: 130, stroke: "#f59e0b" },
-      { id: "phys1", name_ar: "فيزياء\n-1-", name_en: "Physics\n(1)", cr: 3, x: 500, y: 110, stroke: "#b91c1c" },
-      { id: "calc1", name_ar: "تفاضل\nوتكامل\n-1-", name_en: "Calculus\n(1)", cr: 3, x: 880, y: 150, stroke: "#b91c1c" },
-      { id: "chem1", name_ar: "كيمياء\n-1-", name_en: "Chemistry\n(1)", cr: 3, x: 330, y: 220, stroke: "#b91c1c" },
-      { id: "chem2", name_ar: "كيمياء\n-2-", name_en: "Chemistry\n(2)", cr: 3, x: 180, y: 220, stroke: "#0284c7" },
-      { id: "fluids_thermo", name_ar: "علوم موائع\nحرارية", name_en: "Thermal Fluid\nSciences", cr: 3, x: 50, y: 220, stroke: "#0284c7" },
-      { id: "phys_lab", name_ar: "مختبر\nفيزياء", name_en: "Physics\nLab", cr: 1, x: 590, y: 150, stroke: "#f59e0b" },
-      { id: "phys2", name_ar: "فيزياء\n-2-", name_en: "Physics\n(2)", cr: 3, x: 500, y: 200, stroke: "#0284c7" },
-      { id: "calc2", name_ar: "تفاضل\nوتكامل\n-2-", name_en: "Calculus\n(2)", cr: 3, x: 880, y: 260, stroke: "#b91c1c" },
+      // قسم الرسم والبرمجة والحاسوب
+      { id: "draw_cad_b", name_ar: "رسم هندسي\n- ب -", name_en: "Eng. Drawing\n(B)", cr: 1, x: 1740, y: 550, stroke: "#f59e0b" },
+      { id: "draw_cad_a", name_ar: "رسم هندسي\n- أ -", name_en: "Eng. Drawing\n(A)", cr: 1, x: 1580, y: 550, stroke: "#f59e0b" },
+      { id: "prog_cpp", name_ar: "البرمجة\nللمهندسين\nC++", name_en: "Prog. for\nEngineers", cr: 3, x: 1900, y: 620, stroke: "#0284c7" },
+      { id: "prog_lab", name_ar: "مختبر البرمجة", name_en: "Programming\nLab", cr: 1, x: 1740, y: 620, stroke: "#22c55e" },
+      { id: "cad_lab", name_ar: "مختبر الرسم\nباستخدام\nالحاسوب", name_en: "CAD\nLab", cr: 1, x: 1620, y: 660, stroke: "#0284c7" },
+      { id: "simulation", name_ar: "المحاكاة", name_en: "Simulation", cr: 3, x: 1560, y: 770, stroke: "#0284c7" },
 
-      // المستوى / السنة الثانية (y: 360)
-      { id: "mat_mech1", name_ar: "ميكانيكا\nالمواد\n-1-", name_en: "Mechanics of\nMaterials (1)", cr: 3, x: 500, y: 280, stroke: "#b91c1c" },
-      { id: "diff_eq", name_ar: "معادلات\nتفاضلية", name_en: "Differential\nEquations", cr: 3, x: 740, y: 360, stroke: "#0284c7" },
-      { id: "inter_calc", name_ar: "تحليل\nوسيط", name_en: "Intermediate\nAnalysis", cr: 3, x: 840, y: 360, stroke: "#0284c7" },
-      { id: "prob_stat", name_ar: "إحصاء\nواحتمالات", name_en: "Probability &\nStatistics", cr: 3, x: 940, y: 360, stroke: "#0284c7" },
-      { id: "work_study", name_ar: "قياس\nوتحليل\nالعمل", name_en: "Work Measurement\n& Analysis", cr: 3, x: 640, y: 410, stroke: "#b91c1c" },
-      { id: "ee_principles", name_ar: "مبادئ\nالهندسة\nالكهربائية", name_en: "Principles of\nElectrical Eng.", cr: 3, x: 400, y: 410, stroke: "#0284c7" },
-      { id: "mat_mech2", name_ar: "ميكانيكا\nالمواد\n-2-", name_en: "Mechanics of\nMaterials (2)", cr: 3, x: 300, y: 410, stroke: "#b91c1c" },
-      { id: "dyn_vibrations", name_ar: "ديناميكا\nواهتزازات", name_en: "Dynamics &\nVibrations", cr: 3, x: 190, y: 410, stroke: "#0284c7" },
-      { id: "meas_lab", name_ar: "مختبر\nقياسات\nهندسية", name_en: "Measurements\nLab", cr: 1, x: 80, y: 360, stroke: "#0284c7" },
-      { id: "workshops", name_ar: "مشاغل\nهندسية", name_en: "Engineering\nWorkshops", cr: 1, x: -30, y: 360, stroke: "#f59e0b" },
+      // مسار الرياضيات والإحصاء وبحوث العمليات (الوسط الأيمن)
+      { id: "calc1", name_ar: "تفاضل\nوتكامل\n-1-", name_en: "Calculus\n(1)", cr: 3, x: 1360, y: 150, stroke: "#b91c1c" },
+      { id: "calc2", name_ar: "تفاضل\nوتكامل\n-2-", name_en: "Calculus\n(2)", cr: 3, x: 1360, y: 260, stroke: "#b91c1c" },
+      { id: "diff_eq", name_ar: "معادلات\nتفاضلية", name_en: "Differential\nEquations", cr: 3, x: 1180, y: 360, stroke: "#0284c7" },
+      { id: "inter_calc", name_ar: "تحليل\nوسيط", name_en: "Intermediate\nAnalysis", cr: 3, x: 1300, y: 360, stroke: "#0284c7" },
+      { id: "prob_stat", name_ar: "إحصاء\nواحتمالات", name_en: "Probability &\nStatistics", cr: 3, x: 1440, y: 360, stroke: "#0284c7" },
+      { id: "eng_econ", name_ar: "اقتصاد\nوإدارة\nهندسية", name_en: "Engineering\nEconomics", cr: 3, x: 1300, y: 470, stroke: "#0284c7" },
+      { id: "app_stats", name_ar: "الإحصاء\nالهندسي\nالتطبيقي", name_en: "Applied Eng.\nStatistics", cr: 3, x: 1440, y: 470, stroke: "#b91c1c" },
+      { id: "cost_analysis", name_ar: "حساب\nوتحليل\nالتكاليف", name_en: "Cost Accounting\n& Analysis", cr: 3, x: 1300, y: 570, stroke: "#0284c7" },
+      { id: "quality_control", name_ar: "ضبط الجودة", name_en: "Quality\nControl", cr: 3, x: 1440, y: 570, stroke: "#0284c7" },
+      { id: "num_methods", name_ar: "طرق الحل\nالعددية", name_en: "Numerical\nMethods", cr: 3, x: 1300, y: 670, stroke: "#0284c7" },
+      { id: "reliability_safety", name_ar: "الوثوقية\nوإدارة\nالسلامة", name_en: "Reliability &\nSafety Mgmt", cr: 3, x: 1440, y: 670, stroke: "#0284c7" },
+      { id: "or1", name_ar: "بحوث\nعمليات\n-1-", name_en: "Operations\nResearch (1)", cr: 3, x: 1300, y: 770, stroke: "#b91c1c" },
+      { id: "or2", name_ar: "بحوث\nعمليات\n-2-", name_en: "Operations\nResearch (2)", cr: 3, x: 1440, y: 770, stroke: "#0284c7" },
 
-      // المستوى / السنة الثالثة (y: 470 - 560)
-      { id: "app_stats", name_ar: "الإحصاء\nالهندسي\nالتطبيقي", name_en: "Applied Eng.\nStatistics", cr: 3, x: 940, y: 460, stroke: "#b91c1c" },
-      { id: "eng_econ", name_ar: "اقتصاد\nوإدارة\nهندسية", name_en: "Engineering\nEconomics", cr: 3, x: 840, y: 460, stroke: "#0284c7" },
-      { id: "human_factors", name_ar: "هندسة\nالعوامل\nالبشرية", name_en: "Human Factors\nEngineering", cr: 3, x: 690, y: 530, stroke: "#0284c7" },
-      { id: "automation", name_ar: "أتمتة\nوتحكم", name_en: "Automation &\nControl", cr: 3, x: 400, y: 500, stroke: "#0284c7" },
-      { id: "eng_materials", name_ar: "مواد\nهندسية", name_en: "Engineering\nMaterials", cr: 3, x: 300, y: 560, stroke: "#0284c7" },
-      { id: "manuf_proc1", name_ar: "عمليات\nالتصنيع\n-1-", name_en: "Manufacturing\nProcesses (1)", cr: 3, x: 80, y: 460, stroke: "#0284c7" },
-      { id: "draw_cad_a", name_ar: "رسم هندسي\n- أ -", name_en: "Eng. Drawing\n(A)", cr: 1, x: 1090, y: 530, stroke: "#f59e0b" },
-      { id: "draw_cad_b", name_ar: "رسم هندسي\n- ب -", name_en: "Eng. Drawing\n(B)", cr: 1, x: 1200, y: 530, stroke: "#f59e0b" },
-      { id: "prog_cpp", name_ar: "البرمجة\nللمهندسين\nC++", name_en: "Prog. for\nEngineers", cr: 3, x: 1400, y: 580, stroke: "#0284c7" },
-      { id: "prog_lab", name_ar: "مختبر البرمجة", name_en: "Programming\nLab", cr: 1, x: 1280, y: 580, stroke: "#22c55e" },
+      // مسار دراسة العمل والعوامل البشرية والتخطيط (الوسط)
+      { id: "work_study", name_ar: "قياس\nوتحليل\nالعمل", name_en: "Work Measurement\n& Analysis", cr: 3, x: 1040, y: 430, stroke: "#b91c1c" },
+      { id: "human_factors", name_ar: "هندسة\nالعوامل\nالبشرية", name_en: "Human Factors\nEngineering", cr: 3, x: 1100, y: 540, stroke: "#0284c7" },
+      { id: "human_factors_lab", name_ar: "مختبر\nالعوامل\nالبشرية", name_en: "Human Factors\nLab", cr: 1, x: 1100, y: 660, stroke: "#0284c7" },
+      { id: "prod_planning", name_ar: "تخطيط الإنتاج\nوضبط المخزون", name_en: "Production Planning\n& Inventory", cr: 3, x: 920, y: 560, stroke: "#0284c7" },
+      { id: "facility_planning", name_ar: "تخطيط\nالمنشآت", name_en: "Facilities\nPlanning", cr: 3, x: 860, y: 690, stroke: "#0284c7" },
+      { id: "supply_chain", name_ar: "إدارة\nسلسلة\nالتزويد", name_en: "Supply Chain\nManagement", cr: 3, x: 980, y: 690, stroke: "#0284c7" },
+      { id: "manuf_sys", name_ar: "أنظمة\nالعمليات\nالتصنيعية", name_en: "Manufacturing\nSystems", cr: 3, x: 920, y: 780, stroke: "#0284c7" },
 
-      // المستوى / السنة الرابعة (y: 640 - 730)
-      { id: "manuf_lab", name_ar: "مختبر\nعمليات\nالتصنيع", name_en: "Manufacturing\nLab", cr: 1, x: -30, y: 550, stroke: "#0284c7" },
-      { id: "manuf_proc2", name_ar: "عمليات\nالتصنيع\n-2-", name_en: "Manufacturing\nProcesses (2)", cr: 3, x: 80, y: 550, stroke: "#0284c7" },
-      { id: "auto_lab", name_ar: "مختبر\nالأتمتة\nوالتحكم", name_en: "Automation &\nControl Lab", cr: 1, x: 400, y: 580, stroke: "#0284c7" },
-      { id: "prod_planning", name_ar: "تخطيط الإنتاج\nوضبط المخزون", name_en: "Production Planning\n& Inventory", cr: 3, x: 530, y: 560, stroke: "#0284c7" },
-      { id: "cost_analysis", name_ar: "حساب\nوتحليل\nالتكاليف", name_en: "Cost Accounting\n& Analysis", cr: 3, x: 840, y: 540, stroke: "#0284c7" },
-      { id: "quality_control", name_ar: "ضبط الجودة", name_en: "Quality\nControl", cr: 3, x: 940, y: 540, stroke: "#0284c7" },
-      { id: "cad_lab", name_ar: "مختبر الرسم\nباستخدام\nالحاسوب", name_en: "CAD\nLab", cr: 1, x: 1140, y: 620, stroke: "#0284c7" },
-      { id: "human_factors_lab", name_ar: "مختبر\nالعوامل\nالبشرية", name_en: "Human Factors\nLab", cr: 1, x: 690, y: 640, stroke: "#0284c7" },
-      { id: "num_methods", name_ar: "طرق الحل\nالعددية", name_en: "Numerical\nMethods", cr: 3, x: 840, y: 640, stroke: "#0284c7" },
-      { id: "reliability_safety", name_ar: "الوثوقية\nوإدارة\nالسلامة", name_en: "Reliability &\nSafety Mgmt", cr: 3, x: 940, y: 640, stroke: "#0284c7" },
-      { id: "or1", name_ar: "بحوث\nعمليات\n-1-", name_en: "Operations\nResearch (1)", cr: 3, x: 840, y: 730, stroke: "#b91c1c" },
-      { id: "or2", name_ar: "بحوث\nعمليات\n-2-", name_en: "Operations\nResearch (2)", cr: 3, x: 940, y: 730, stroke: "#0284c7" },
-      { id: "simulation", name_ar: "المحاكاة", name_en: "Simulation", cr: 3, x: 1080, y: 730, stroke: "#0284c7" },
+      // مسار الفيزياء والميكانيكا والكهرباء والأتمتة (الوسط الأيسر)
+      { id: "phys1", name_ar: "فيزياء\n-1-", name_en: "Physics\n(1)", cr: 3, x: 880, y: 110, stroke: "#b91c1c" },
+      { id: "phys_lab", name_ar: "مختبر\nفيزياء", name_en: "Physics\nLab", cr: 1, x: 980, y: 160, stroke: "#f59e0b" },
+      { id: "phys2", name_ar: "فيزياء\n-2-", name_en: "Physics\n(2)", cr: 3, x: 880, y: 200, stroke: "#0284c7" },
+      { id: "mat_mech1", name_ar: "ميكانيكا\nالمواد\n-1-", name_en: "Mechanics of\nMaterials (1)", cr: 3, x: 880, y: 280, stroke: "#b91c1c" },
+      { id: "ee_principles", name_ar: "مبادئ\nالهندسة\nالكهربائية", name_en: "Principles of\nElectrical Eng.", cr: 3, x: 740, y: 410, stroke: "#0284c7" },
+      { id: "automation", name_ar: "أتمتة\nوتحكم", name_en: "Automation &\nControl", cr: 3, x: 740, y: 510, stroke: "#0284c7" },
+      { id: "auto_lab", name_ar: "مختبر\nالأتمتة\nوالتحكم", name_en: "Automation &\nControl Lab", cr: 1, x: 740, y: 600, stroke: "#0284c7" },
+      { id: "mat_mech2", name_ar: "ميكانيكا\nالمواد\n-2-", name_en: "Mechanics of\nMaterials (2)", cr: 3, x: 600, y: 410, stroke: "#b91c1c" },
+      { id: "dyn_vibrations", name_ar: "ديناميكا\nواهتزازات", name_en: "Dynamics &\nVibrations", cr: 3, x: 460, y: 410, stroke: "#0284c7" },
+      { id: "eng_materials", name_ar: "مواد\nهندسية", name_en: "Engineering\nMaterials", cr: 3, x: 600, y: 560, stroke: "#0284c7" },
+      { id: "mat_lab", name_ar: "مختبر\nمواد\nهندسية", name_en: "Engineering\nMaterials Lab", cr: 1, x: 530, y: 700, stroke: "#0284c7" },
+      { id: "machine_design", name_ar: "تصميم\nأجزاء\nالآلات", name_en: "Machine Parts\nDesign", cr: 3, x: 640, y: 700, stroke: "#0284c7" },
 
-      // المستوى / السنة الخامسة (y: 650 - 750)
-      { id: "prod_development", name_ar: "تطوير\nالمنتجات", name_en: "Product\nDevelopment", cr: 3, x: 80, y: 640, stroke: "#0284c7" },
-      { id: "mat_lab", name_ar: "مختبر\nمواد\nهندسية", name_en: "Engineering\nMaterials Lab", cr: 1, x: 230, y: 690, stroke: "#0284c7" },
-      { id: "machine_design", name_ar: "تصميم\nأجزاء\nالآلات", name_en: "Machine Parts\nDesign", cr: 3, x: 330, y: 690, stroke: "#0284c7" },
-      { id: "facility_planning", name_ar: "تخطيط\nالمنشآت", name_en: "Facilities\nPlanning", cr: 3, x: 470, y: 670, stroke: "#0284c7" },
-      { id: "supply_chain", name_ar: "إدارة\nسلسلة\nالتزويد", name_en: "Supply Chain\nManagement", cr: 3, x: 570, y: 670, stroke: "#0284c7" },
-      { id: "manuf_sys", name_ar: "أنظمة\nالعمليات\nالتصنيعية", name_en: "Manufacturing\nSystems", cr: 3, x: 510, y: 750, stroke: "#0284c7" },
+      // مسار الكيمياء والمشاغل وعمليات التصنيع (أقصى اليسار)
+      { id: "chem_lab", name_ar: "مختبر\nكيمياء عامة", name_en: "General Chem\nLab", cr: 1, x: 380, y: 130, stroke: "#f59e0b" },
+      { id: "chem1", name_ar: "كيمياء\n-1-", name_en: "Chemistry\n(1)", cr: 3, x: 600, y: 220, stroke: "#b91c1c" },
+      { id: "chem2", name_ar: "كيمياء\n-2-", name_en: "Chemistry\n(2)", cr: 3, x: 440, y: 220, stroke: "#0284c7" },
+      { id: "fluids_thermo", name_ar: "علوم موائع\nحرارية", name_en: "Thermal Fluid\nSciences", cr: 3, x: 300, y: 220, stroke: "#0284c7" },
+      { id: "workshops", name_ar: "مشاغل\nهندسية", name_en: "Engineering\nWorkshops", cr: 1, x: 160, y: 350, stroke: "#f59e0b" },
+      { id: "meas_lab", name_ar: "مختبر\nقياسات\nهندسية", name_en: "Measurements\nLab", cr: 1, x: 300, y: 350, stroke: "#0284c7" },
+      { id: "manuf_proc1", name_ar: "عمليات\nالتصنيع\n-1-", name_en: "Manufacturing\nProcesses (1)", cr: 3, x: 300, y: 460, stroke: "#0284c7" },
+      { id: "manuf_lab", name_ar: "مختبر\nعمليات\nالتصنيع", name_en: "Manufacturing\nLab", cr: 1, x: 160, y: 550, stroke: "#0284c7" },
+      { id: "manuf_proc2", name_ar: "عمليات\nالتصنيع\n-2-", name_en: "Manufacturing\nProcesses (2)", cr: 3, x: 300, y: 550, stroke: "#0284c7" },
+      { id: "prod_development", name_ar: "تطوير\nالمنتجات", name_en: "Product\nDevelopment", cr: 3, x: 300, y: 660, stroke: "#0284c7" },
 
-      // مشاريع التخرج والتدريب (أسفل الصفحة) (y: 890)
-      { id: "proj1", name_ar: "مشروع تخرج (1)\n(إنهاء 117 س)", name_en: "Graduation Project 1\n(117 Cr)", cr: 2, x: 620, y: 890, stroke: "#64748b" },
-      { id: "proj2", name_ar: "مشروع تخرج (2)", name_en: "Graduation Project 2", cr: 2, x: 450, y: 890, stroke: "#64748b" },
-      { id: "training", name_ar: "التدريب الهندسي\n(إنهاء 117 س)", name_en: "Engineering Training\n(117 Cr)", cr: 3, x: 920, y: 890, stroke: "#64748b" }
+      // مشاريع التخرج والتدريب (أسفل الصفحة)
+      { id: "proj1", name_ar: "مشروع تخرج (1)\n(إنهاء 117 س)", name_en: "Graduation Project 1\n(117 Cr)", cr: 2, x: 1100, y: 920, stroke: "#64748b" },
+      { id: "proj2", name_ar: "مشروع تخرج (2)", name_en: "Graduation Project 2", cr: 2, x: 880, y: 920, stroke: "#64748b" },
+      { id: "training", name_ar: "التدريب الهندسي\n(إنهاء 117 س)", name_en: "Engineering Training\n(117 Cr)", cr: 3, x: 1480, y: 920, stroke: "#64748b" }
     ];
 
     // شبكة العلاقات والأسهم المباشرة والمتقاطعة حسب البوستر
     const links = [
-      // مسارات العلوم الأساسية والرياضيات
       { from: "phys1", to: "phys2", type: "solid" },
       { from: "phys1", to: "phys_lab", type: "dashed" },
       { from: "chem1", to: "chem2", type: "solid" },
@@ -657,7 +656,6 @@
       { from: "calc2", to: "inter_calc", type: "solid" },
       { from: "calc2", to: "prob_stat", type: "solid" },
 
-      // ميكانيكا المواد والمواد
       { from: "phys1", to: "mat_mech1", type: "solid" },
       { from: "calc1", to: "mat_mech1", type: "solid" },
       { from: "mat_mech1", to: "mat_mech2", type: "solid" },
@@ -666,24 +664,20 @@
       { from: "mat_mech2", to: "machine_design", type: "solid" },
       { from: "eng_materials", to: "mat_lab", type: "dashed" },
 
-      // التصنيع والقياسات
       { from: "workshops", to: "meas_lab", type: "solid" },
       { from: "meas_lab", to: "manuf_proc1", type: "solid" },
       { from: "manuf_proc1", to: "manuf_proc2", type: "solid" },
       { from: "manuf_proc1", to: "manuf_lab", type: "dashed" },
       { from: "manuf_proc2", to: "prod_development", type: "solid" },
 
-      // الهندسة الكهربائية والأتمتة
       { from: "phys2", to: "ee_principles", type: "solid" },
       { from: "ee_principles", to: "automation", type: "solid" },
       { from: "automation", to: "auto_lab", type: "dashed" },
 
-      // دراسة العمل والعوامل البشرية
       { from: "prob_stat", to: "work_study", type: "solid" },
       { from: "work_study", to: "human_factors", type: "solid" },
       { from: "human_factors", to: "human_factors_lab", type: "dashed" },
 
-      // الإحصاء والجودة والبحوث
       { from: "prob_stat", to: "app_stats", type: "solid" },
       { from: "prob_stat", to: "eng_econ", type: "solid" },
       { from: "app_stats", to: "quality_control", type: "solid" },
@@ -694,24 +688,21 @@
       { from: "or1", to: "or2", type: "solid" },
       { from: "or2", to: "simulation", type: "solid" },
 
-      // التخطيط وسلاسل التزويد
       { from: "work_study", to: "prod_planning", type: "solid" },
       { from: "prod_planning", to: "facility_planning", type: "solid" },
       { from: "prod_planning", to: "supply_chain", type: "solid" },
       { from: "facility_planning", to: "manuf_sys", type: "solid" },
 
-      // الرسم الهندسي والبرمجة
       { from: "draw_cad_a", to: "cad_lab", type: "solid" },
       { from: "draw_cad_b", to: "cad_lab", type: "solid" },
       { from: "prog_cpp", to: "prog_lab", type: "dashed" },
       { from: "prog_cpp", to: "num_methods", type: "solid" },
       { from: "prog_cpp", to: "simulation", type: "solid" },
 
-      // مشاريع التخرج
       { from: "proj1", to: "proj2", type: "solid" }
     ];
 
-    let userState = JSON.parse(localStorage.getItem('ie_study_graph_v1') || '{}');
+    let userState = JSON.parse(localStorage.getItem('ie_study_graph_v2') || '{}');
     let activeCourseId = null;
 
     const scene = document.getElementById('scene');
@@ -947,7 +938,7 @@
       } else {
         userState[activeCourseId] = status;
       }
-      localStorage.setItem('ie_study_graph_v1', JSON.stringify(userState));
+      localStorage.setItem('ie_study_graph_v2', JSON.stringify(userState));
 
       const nodeEl = document.getElementById(`node-${activeCourseId}`);
       if (nodeEl) {
@@ -1080,7 +1071,7 @@
         tx = activeNodes.reduce((s, n) => s + n.x, 0) / activeNodes.length;
         ty = activeNodes.reduce((s, n) => s + n.y, 0) / activeNodes.length;
       } else {
-        tx = 700; ty = 170;
+        tx = 1000; ty = 260;
       }
       centerOn(tx, ty, mobileFocusScale(), false);
     }
@@ -1149,7 +1140,7 @@
         const factor = dist / initialPinchDist;
         const newScale = Math.min(Math.max(MIN_SCALE, initialPinchScale * factor), MAX_SCALE);
         currentX = pinchAnchorScreen.x - pinchAnchorScene.x * newScale;
-        currentY = pinchAnchorScene.y - pinchAnchorScene.y * newScale;
+        currentY = pinchAnchorScreen.y - pinchAnchorScene.y * newScale;
         scale = newScale;
         applyTransform();
       }
